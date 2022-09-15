@@ -14,6 +14,17 @@ const postSchema = new Schema({
     required: true,
     default: false,
   },
+  author:{
+    type:Schema.Types.ObjectId,
+    required: true,
+
+  },
+  likedBy:[
+    {
+      type:Schema.Types.ObjectId,
+      ref:"User"
+    }
+  ]
   
 },
 {

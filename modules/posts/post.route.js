@@ -6,10 +6,11 @@ const {
      deletePost,
      updatePost,
     } = require("./post.controller");
+    const {authRequired} = require("../middlewares/authRequired")
 
 const postsRouter = router();
 
-postsRouter.route("/").get(getAllPost).post(createPost);
-postsRouter.route("/:postId").get(getSinglePost).patch(updatePost).delete(deletePost);
+postsRouter.route("/").all(authRequired).get(getAllPost).post(createPost);
+postsRouter.route("/:postId").all(authRequired).get(getSinglePost).patch(updatePost).delete(deletePost);
 
 module.exports = postsRouter;
